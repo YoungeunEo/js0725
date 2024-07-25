@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스 활용하기 7-2-9</title>
+</head>
+<script>
+    // DOMContentLoaded 이벤트는 HTML 문서의 콘텐츠가 모두 로드된 후에 실행됩니다.
+    document.addEventListener('DOMContentLoaded', () => {
+         // 타이머 변수와 타이머 ID 변수를 초기화합니다.
+      let [timer, timerId] = [0, 0]
+      // h1 요소와 체크박스를 선택합니다.
+      const h1 = document.querySelector('h1')
+      const checkbox = document.querySelector('input')
+      // 체크박스의 상태가 변경될 때마다 실행되는 이벤트 리스너를 추가합니다.
+      checkbox.addEventListener('change', (event) => {
+        // 체크박스가 체크된 경우
+        if (event.currentTarget.checked) {
+          // 체크 상태, 1초마다 실행되는 타이머를 설정합니다.
+          timerId = setInterval(() => {
+             // 타이머 값을 1씩 증가시킵니다.
+            timer += 1
+            // h1 요소에 타이머 값을 초 단위로 표시합니다.
+            h1.textContent = `${timer}초`
+          }, 1000)
+        } else {
+          // 체크 해제 상태, 타이머를 중지합니다.
+          clearInterval(timerId)
+        }
+      })
+    })
+  </script>
+<body>
+    <input type="checkbox">
+    <span>타이머 활성화</span>
+    <h1></h1>  
+</body>
+</html>
